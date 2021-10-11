@@ -1,7 +1,9 @@
 plugins {
-id "com.github.johnrengelman.shadow" version "6.1.0"
+  id "com.github.johnrengelman.shadow" version "6.1.0"
   id 'java'
   id "edu.sc.seis.launch4j" version "2.5.1"
+  id 'distribution'
+  id 'application'
 }
 
 group = 'com.besixplus.firma'
@@ -9,6 +11,8 @@ group = 'com.besixplus.firma'
 repositories {
     mavenCentral()
 }
+
+mainClassName = 'com.besixplus.firmador.Firmar'
 
 jar {
 	baseName = 'bsx-firma'
@@ -41,7 +45,11 @@ launch4j {
   icon = "${projectDir}/Firmar.ico"
 }
 
-task desplegar(dependsOn: ['build'] , type: Copy) {
-    from "${buildDir}/libs/bsx-firma.jar"    
-    into "${System.env.JBOSS_HOME}/standalone/deployments"
+task copyRes(type:Copy) {
+   copy {
+     from "${projectDir}/leeme.txt"
+     into "${buildDir}/"
+    }
 }
+
+createExe.finalizedBy copyRes
