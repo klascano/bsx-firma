@@ -1,0 +1,5 @@
+Ayuda bsx-firma ejemplo: bsx-firma.exe c:\firma.p12 miclave c:\proforma.pdf c:\proforma_firmada.pdf
+param1 ruta firma .p12
+param2 clave firma
+param3 ruta archivo pdf
+param4 ruta archivo pdf firmado
